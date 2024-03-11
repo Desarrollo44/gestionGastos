@@ -1,23 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+
+import Egresos from "./components/egresos";
+import Ingresos from "./components/ingesos";
+import Total from "./components/totalDinero";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+          <div class="container-fluid">
+            <h1 class="navbar-brand" style={{ fontSize: '35px' }}>Gestor de Gastos Personales</h1>
+          </div>
+        </nav>
       </header>
+      <body>
+        <Total />
+        <div style={{
+          display: 'flex',
+          gap:'40px',
+          width:'100%',
+          justifyContent:'center',
+          marginTop:'10%'
+        }}> 
+          <Egresos />
+          <Ingresos />
+        </div>
+      </body>
     </div>
   );
 }
