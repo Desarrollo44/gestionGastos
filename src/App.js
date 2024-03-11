@@ -2,6 +2,7 @@
 import Egresos from "./components/egresos";
 import Ingresos from "./components/ingesos";
 import Total from "./components/totalDinero";
+import './App.css'
 
 function App() {
   return (
