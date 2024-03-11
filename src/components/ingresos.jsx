@@ -17,7 +17,7 @@ function Ingresos() {
     }}>
             <div class="card-header text-success">Ingresos</div>
             <div class="card-body">
-                <h3 class="card-title">Danger card title</h3>
+                <h3 class="card-title">Registro de Ingresos</h3>
                 <button
                     onClick={handleModal}
                     type="button"
@@ -35,7 +35,7 @@ function Ingresos() {
                     <span class="material-symbols-outlined">
                         add_box
                     </span>
-                    <p>Agregar egresos</p>
+                    <p>Agregar ingresos</p>
                 </button>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
             </div>
