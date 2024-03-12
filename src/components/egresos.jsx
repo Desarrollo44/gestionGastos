@@ -3,13 +3,13 @@ import Results from "./results";
 
 function Egresos() {
     const [dataEgresos, setDataEgresos] = useState([]);
+    const [egresoTotal,setEgresoTotal]=useState(0);
     const [formEgresos, setFormEgresos] = useState({
         descripcion: '',
         cantidad: 0,
         fecha: '',
         state: true,
-        icon: '',
-        type: 'egreso'
+        icon: ''
     })
     const [open, setOpen] = useState(false);
     const [selectedButton, setSelectedButton] = useState('cake');
@@ -37,10 +37,10 @@ function Egresos() {
             cantidad: 0,
             fecha: '',
             state: true,
-            icon: '',
-            type: 'egreso'
+            icon: ''
 
-        })
+        });
+        setEgresoTotal(egresoTotal+parseFloat(formEgresos.cantidad));
     }
 
     const handleChange = (e) => {
@@ -54,10 +54,11 @@ function Egresos() {
         console.log(dataEgresos);
     }, [dataEgresos]);
     return (<>
-        <div class="card border-danger " style={{ width: '700px' }} >
+        <div class="card border-danger mb-3 " style={{ width: '700px' }} >
             <div class="card-header text-danger">Egresos</div>
             <div class="card-body">
                 <h4 class="card-title">Registro de Egresos</h4>
+                <p>{`Total de los egresos:$${egresoTotal}`}</p>
                 <button
                     onClick={handleModal}
                     type="button"
@@ -77,7 +78,7 @@ function Egresos() {
                     </span>
                     <p>Agregar egresos</p>
                 </button>
-                <Results dataE={dataEgresos} />
+                <Results dataE={dataEgresos} styleCard={"p-3 list-group-item-danger text-dark  list-group-item-action flex-column align-items-start active"}/>
             </div>
         </div>
         {open && (
