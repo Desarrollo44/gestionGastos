@@ -14,3 +14,7 @@
 /* .form-control {
   margin-left: 30px;
 } */
+.selected{
+  background-color: rgb(58, 20, 56);
+  color: rgb(253, 184, 244);
+}

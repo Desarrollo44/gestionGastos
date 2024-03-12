@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-
+import Results from "./results";
 
 function Egresos() {
     const [dataEgresos, setDataEgresos] = useState([]);
@@ -8,20 +8,29 @@ function Egresos() {
         cantidad: 0,
         fecha: '',
         state: true,
+        icon:'',
         type: 'egreso'
     })
     const [open, setOpen] = useState(false);
+    const [selectedButton, setSelectedButton] = useState('cake');
 
-    const handleModal = () => {
+    const handleButtonClick = (value) => {
+        setSelectedButton(value);
+
+    };
+
+    const handleModal = (e) => {
         setOpen(true);
         console.log(open);
+        e.stopPropagation();
     }
     const handleClose = () => {
         setOpen(false)
     }
     const handlesubmit = (e) => {
         e.preventDefault();
-        setDataEgresos([...dataEgresos, formEgresos]);
+        const updateform={...formEgresos,icon:selectedButton}
+        setDataEgresos([...dataEgresos, updateform]);
         console.log(dataEgresos);
         handleClose();
         setFormEgresos({
@@ -29,7 +38,9 @@ function Egresos() {
             cantidad: 0,
             fecha: '',
             state: true,
+            icon:'',
             type: 'egreso'
+            
         })
     }
 
@@ -71,6 +82,7 @@ function Egresos() {
                     <p>Agregar egresos</p>
                 </button>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <Results />
             </div>
         </div>
         {open && (
@@ -116,6 +128,65 @@ function Egresos() {
                                     value={formEgresos.fecha}
                                     onChange={handleChange}
                                 />
+                            </div>
+                            <div >
+                                <button
+                                    type="button"
+                                    className={`btn btn-primary ${selectedButton === 'cake' ? 'selected' : ''}`}
+                                    onClick={() => handleButtonClick('cake')}
+                                    value={formEgresos.icon}
+                                    name="icon"
+                                    onChange={handleChange}
+                                >
+                                    <span className="material-symbols-outlined">cake</span>
+                                </button>
+                                <button
+                                    type="button"
+                                    className={`btn btn-primary ${selectedButton === 'import_contacts' ? 'selected' : ''}`}
+                                    onClick={() => handleButtonClick('import_contacts')}
+                                >
+                                    <span class="material-symbols-outlined">
+                                        import_contacts
+                                    </span>
+                                </button>
+                                <button
+                                    type="button"
+                                    className={`btn btn-primary ${selectedButton === 'shopping_cart' ? 'selected' : ''}`}
+                                    onClick={() => handleButtonClick('shopping_cart')}
+                                >
+                                    <span class="material-symbols-outlined">
+                                        shopping_cart
+                                    </span>
+                                </button>
+                                <button
+                                    type="button"
+                                    className={`btn btn-primary ${selectedButton === 'construction' ? 'selected' : ''}`}
+                                    onClick={() => handleButtonClick('construction')}
+                                >
+                                    <span class="material-symbols-outlined">
+                                        construction
+                                    </span>
+                                </button>
+                                <button
+                                    type="button"
+                                    className={`btn btn-primary ${selectedButton === 'movie' ? 'selected' : ''}`}
+                                    onClick={() => handleButtonClick('movie')}
+                                >
+                                    <span class="material-symbols-outlined">
+                                        movie
+                                    </span>
+                                </button>
+                                <button
+                                    type="button"
+                                    className={`btn btn-primary ${selectedButton === 'receipt_long' ? 'selected' : ''}`}
+                                    onClick={() => handleButtonClick('receipt_long')}
+                                >
+                                    <span class="material-symbols-outlined">
+                                        receipt_long
+                                    </span>
+                                </button>
+
+
                             </div>
 
                             <div className="modal-footer">
