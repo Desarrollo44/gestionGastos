@@ -2,22 +2,23 @@ import { useState } from "react";
 import Results from "./results";
 function Ingresos() {
     const [open, setOpen] = useState(false);
-    const [ingresoTotal,setIngresoTotal]=useState(0);
-    const [dataIngresos,setDataIngresos]=useState([]);
-    const [selectedButton,setSelectedButton]=useState('cake');
-    const [formIngreso,setFormIngreso]=useState({
-        descripcion:'',
-        cantidad:0,
-        fecha:'',
-        state:true,
-        icon:''
+    const [ingresoTotal, setIngresoTotal] = useState(0);
+    const [dataIngresos, setDataIngresos] = useState([]);
+    const [selectedButton, setSelectedButton] = useState('');
+    const [error, setError] = useState('');
+    const [formIngreso, setFormIngreso] = useState({
+        descripcion: '',
+        cantidad: 0,
+        fecha: '',
+        state: true,
+        icon: ''
     });
 
     const handleModal = () => {
         setOpen(true);
         console.log(open);
     }
-    const handleClose=()=>{
+    const handleClose = () => {
         setOpen(false)
     }
 
@@ -33,29 +34,43 @@ function Ingresos() {
             [name]: value
         }));
     }
-    const styleCards="p-3 list-group-item-success text-dark  list-group-item-action flex-column align-items-start active";
-    const handlesubmit = async (e) => {
-        e.preventDefault();
-        const updateform = { ...formIngreso, icon: selectedButton }
-        setDataIngresos([...dataIngresos, updateform]);
-        // console.log(dataIngresos);
-        handleClose();
-        setFormIngreso({
-            descripcion: '',
-            cantidad: 0,
-            fecha: '',
-            state: true,
-            icon: ''
+    const styleCards = "p-3 list-group-item-success text-dark  list-group-item-action flex-column align-items-start active";
 
-        });
-        setIngresoTotal(ingresoTotal+parseFloat(formIngreso.cantidad));
-        handleClose();
+    const handlesubmit =(e) => {
+        e.preventDefault();
+        const monto=parseInt(formIngreso.cantidad);
+        console.log(monto);
+        if (selectedButton !== '') {
+            if(monto>0){
+                const updateform = { ...formIngreso, icon: selectedButton }
+                setDataIngresos([...dataIngresos, updateform]);
+                // console.log(dataIngresos);
+                handleClose();
+                setFormIngreso({
+                    descripcion: '',
+                    cantidad: 0,
+                    fecha: '',
+                    state: true,
+                    icon: ''
+    
+                });
+                setIngresoTotal(ingresoTotal + parseFloat(formIngreso.cantidad));
+                setError('');
+                setSelectedButton('');
+            }else {
+                setError('por favor ingrese un monto valido para registrar el movimiento');
+            }
+           
+        } else {
+            setError('por favor seleccione un icono para registrar el movimiento');
+        }
+
     }
 
 
 
     return (<>
-        <div class="card border-success mb-3 " style={{width:'700px'}}>
+        <div class="card border-success mb-3 " style={{ width: '700px' }}>
             <div class="card-header text-success">Ingresos</div>
             <div class="card-body">
                 <h3 class="card-title">Registro de Ingresos</h3>
@@ -80,7 +95,7 @@ function Ingresos() {
                     <p>Agregar ingresos</p>
                 </button>
 
-                <Results dataE={dataIngresos} styleCard={styleCards}/>
+                <Results dataE={dataIngresos} styleCard={styleCards} />
             </div>
         </div>
         {open && (
@@ -96,35 +111,38 @@ function Ingresos() {
                         <form onSubmit={handlesubmit} >
                             <div className="form-group">
                                 <label class="form-label mb-2">descripcion del Ingreso</label>
-                                <input 
-                                type="text" 
-                                class="form-control w-50 mb-4" 
-                                placeholder="Ingrese la Descripcion" 
-                                name="descripcion"
-                                value={formIngreso.descripcion}
-                                onChange={handleChange}
+                                <input
+                                    required
+                                    type="text"
+                                    class="form-control w-50 mb-4"
+                                    placeholder="Ingrese la Descripcion"
+                                    name="descripcion"
+                                    value={formIngreso.descripcion}
+                                    onChange={handleChange}
                                 />
                             </div>
                             <div className="form-group">
                                 <label class="form-label mb-2">cantidad del Ingreso</label>
-                                <input 
-                                type="number" 
-                                class="form-control w-50 mb-4" 
-                                placeholder="Ingrese la Cantidad" 
-                                name="cantidad"
-                                value={formIngreso.cantidad}
-                                onChange={handleChange}
+                                <input
+                                    required
+                                    type="number"
+                                    class="form-control w-50 mb-4"
+                                    placeholder="Ingrese la Cantidad"
+                                    name="cantidad"
+                                    value={formIngreso.cantidad}
+                                    onChange={handleChange}
                                 />
                             </div>
                             <div className="form-group">
                                 <label class="form-label mb-2">fecha del Ingreso</label>
-                                <input 
-                                type="date" 
-                                class="form-control w-50 mb-4" 
-                                placeholder="Ingrese la fecha" 
-                                name="fecha"
-                                value={formIngreso.fecha}
-                                onChange={handleChange}
+                                <input
+                                    required
+                                    type="date"
+                                    class="form-control w-50 mb-4"
+                                    placeholder="Ingrese la fecha"
+                                    name="fecha"
+                                    value={formIngreso.fecha}
+                                    onChange={handleChange}
                                 />
                             </div>
                             <div >
@@ -189,7 +207,7 @@ function Ingresos() {
                                 <button type="button" onClick={handleClose} class="btn btn-danger mx-2" >cerrar</button>
                             </div>
                         </form>
-
+                        {error !== '' ? (<p className="text-danger">{error}</p>) : ('')}
                     </div>
                 </div>
             </div>

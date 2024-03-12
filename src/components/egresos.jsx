@@ -3,7 +3,8 @@ import Results from "./results";
 
 function Egresos() {
     const [dataEgresos, setDataEgresos] = useState([]);
-    const [egresoTotal,setEgresoTotal]=useState(0);
+    const [egresoTotal, setEgresoTotal] = useState(0);
+    const [error, setError] = useState('');
     const [formEgresos, setFormEgresos] = useState({
         descripcion: '',
         cantidad: 0,
@@ -12,7 +13,7 @@ function Egresos() {
         icon: ''
     })
     const [open, setOpen] = useState(false);
-    const [selectedButton, setSelectedButton] = useState('cake');
+    const [selectedButton, setSelectedButton] = useState('');
 
     const handleButtonClick = (value) => {
         setSelectedButton(value);
@@ -28,19 +29,32 @@ function Egresos() {
     }
     const handlesubmit = async (e) => {
         e.preventDefault();
-        const updateform = { ...formEgresos, icon: selectedButton }
-        setDataEgresos([...dataEgresos, updateform]);
-        // console.log(dataEgresos);
-        handleClose();
-        setFormEgresos({
-            descripcion: '',
-            cantidad: 0,
-            fecha: '',
-            state: true,
-            icon: ''
+        const monto=parseInt(formEgresos.cantidad);
+        if (selectedButton !== '') {
+            if(monto>0){
+                const updateform = { ...formEgresos, icon: selectedButton }
+            setDataEgresos([...dataEgresos, updateform]);
+            // console.log(dataEgresos);
+            handleClose();
+            setFormEgresos({
+                descripcion: '',
+                cantidad: 0,
+                fecha: '',
+                state: true,
+                icon: ''
 
-        });
-        setEgresoTotal(egresoTotal+parseFloat(formEgresos.cantidad));
+            });
+            setEgresoTotal(egresoTotal + parseFloat(formEgresos.cantidad));
+            setError('');
+            setSelectedButton('');
+            }else {
+                setError('por favor ingrese un monto valido para registrar el movimiento');
+            }
+            
+        } else {
+            setError('por favor seleccione un icono para registrar el movimiento');
+        }
+
     }
 
     const handleChange = (e) => {
@@ -78,7 +92,7 @@ function Egresos() {
                     </span>
                     <p>Agregar egresos</p>
                 </button>
-                <Results dataE={dataEgresos} styleCard={"p-3 list-group-item-danger text-dark  list-group-item-action flex-column align-items-start active"}/>
+                <Results dataE={dataEgresos} styleCard={"p-3 list-group-item-danger text-dark  list-group-item-action flex-column align-items-start active"} />
             </div>
         </div>
         {open && (
@@ -193,7 +207,7 @@ function Egresos() {
                                 <button type="button" onClick={handleClose} class="btn btn-outline-danger mx-2" >cerrar</button>
                             </div>
                         </form>
-
+                        {error !== '' ? (<p className="text-danger">{error}</p>) : ('')}
                     </div>
                 </div>
             </div>

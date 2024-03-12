@@ -13,7 +13,7 @@ function Results({ dataE,styleCard }) {
     }, [generalData]);
 
     return (<>
-        {generalData.length == 0 ? (
+        {generalData.length === 0 ? (
             <div style={{ margin: '40px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <h1 style={{ fontSize: '40px', border: 'solid 2px', borderRadius: '20px', padding: '15px' }}>No se han generado movimientos</h1>
             </div>
