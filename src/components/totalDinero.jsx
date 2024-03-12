@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Total() {
+function Total({totalE,TotalIn}) {
     return (<>
     <h2 style={{
         margin:'45px 100px'

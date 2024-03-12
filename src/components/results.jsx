@@ -7,11 +7,6 @@ function Results({ dataE,styleCard }) {
     useEffect(() => {
         setGeneralData(dataE);
     }, [dataE]);
-
-    useEffect(() => {
-        console.log(generalData);
-    }, [generalData]);
-
     return (<>
         {generalData.length === 0 ? (
             <div style={{ margin: '40px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>

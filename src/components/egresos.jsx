@@ -64,9 +64,6 @@ function Egresos() {
             [name]: value
         }));
     }
-    useEffect(() => {
-        console.log(dataEgresos);
-    }, [dataEgresos]);
     return (<>
         <div class="card border-danger mb-3 " style={{ width: '700px' }} >
             <div class="card-header text-danger">Egresos</div>

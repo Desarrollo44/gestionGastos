@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import Results from "./results";
-function Ingresos() {
+function Ingresos({getTotal}) {
     const [open, setOpen] = useState(false);
     const [ingresoTotal, setIngresoTotal] = useState(0);
     const [dataIngresos, setDataIngresos] = useState([]);
@@ -39,7 +39,6 @@ function Ingresos() {
     const handlesubmit =(e) => {
         e.preventDefault();
         const monto=parseInt(formIngreso.cantidad);
-        console.log(monto);
         if (selectedButton !== '') {
             if(monto>0){
                 const updateform = { ...formIngreso, icon: selectedButton }
@@ -55,6 +54,7 @@ function Ingresos() {
     
                 });
                 setIngresoTotal(ingresoTotal + parseFloat(formIngreso.cantidad));
+                
                 setError('');
                 setSelectedButton('');
             }else {
@@ -67,7 +67,9 @@ function Ingresos() {
 
     }
 
-
+    useEffect(()=>{
+        getTotal(ingresoTotal);
+    },[ingresoTotal]);
 
     return (<>
         <div class="card border-success mb-3 " style={{ width: '700px' }}>
