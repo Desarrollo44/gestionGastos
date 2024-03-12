@@ -6,13 +6,13 @@ import { useState, useEffect } from "react";
 
 function App() {
   const [totalIn, setTotalIn] = useState(0);
-
+  const[totalE,setTotalE]=useState(0);
   // Este efecto se ejecutará cada vez que totalIn cambie
   useEffect(() => {
     console.log("Nuevo total de ingresos:", totalIn);
   }, [totalIn]);
 
-  const getTotalE = async(newTotal) => {
+  const getTotalIn = async(newTotal) => {
     // Usamos la función de callback para asegurarnos de obtener el valor más reciente
     setTotalIn(prevTotal => {
       console.log("Previo total de ingresos:", prevTotal);
@@ -20,7 +20,9 @@ function App() {
       return newTotal;
     });
   };
-
+  const getTotaE=async(newTotalE)=>{
+    setTotalE(newTotalE);
+  }
   return (
     <div className="App">
       <header className="App-header">
@@ -32,7 +34,7 @@ function App() {
       </header>
       <body>
         <Total />
-        <p>{totalIn}</p>
+        <p>{totalIn-totalE}</p>
         <div style={{
           display: 'flex',
           gap: '40px',
@@ -40,8 +42,8 @@ function App() {
           justifyContent: 'center',
           marginTop: '10%'
         }}>
-          <Egresos />
-          <Ingresos getTotal={getTotalE} />
+          <Egresos getTotalE={getTotaE}/>
+          <Ingresos getTotal={getTotalIn} />
         </div>
       </body>
     </div>
