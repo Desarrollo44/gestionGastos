@@ -8,7 +8,7 @@ function Egresos() {
         cantidad: 0,
         fecha: '',
         state: true,
-        icon:'',
+        icon: '',
         type: 'egreso'
     })
     const [open, setOpen] = useState(false);
@@ -21,26 +21,25 @@ function Egresos() {
 
     const handleModal = (e) => {
         setOpen(true);
-        console.log(open);
         e.stopPropagation();
     }
     const handleClose = () => {
         setOpen(false)
     }
-    const handlesubmit = (e) => {
+    const handlesubmit = async (e) => {
         e.preventDefault();
-        const updateform={...formEgresos,icon:selectedButton}
+        const updateform = { ...formEgresos, icon: selectedButton }
         setDataEgresos([...dataEgresos, updateform]);
-        console.log(dataEgresos);
+        // console.log(dataEgresos);
         handleClose();
         setFormEgresos({
             descripcion: '',
             cantidad: 0,
             fecha: '',
             state: true,
-            icon:'',
+            icon: '',
             type: 'egreso'
-            
+
         })
     }
 
@@ -55,10 +54,7 @@ function Egresos() {
         console.log(dataEgresos);
     }, [dataEgresos]);
     return (<>
-        <div class="card border-danger mb-3" style={{
-            maxWidth: "40rem",
-
-        }}>
+        <div class="card border-danger " style={{ width: '700px' }} >
             <div class="card-header text-danger">Egresos</div>
             <div class="card-body">
                 <h4 class="card-title">Registro de Egresos</h4>
@@ -81,8 +77,7 @@ function Egresos() {
                     </span>
                     <p>Agregar egresos</p>
                 </button>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <Results />
+                <Results dataE={dataEgresos} />
             </div>
         </div>
         {open && (
@@ -99,6 +94,7 @@ function Egresos() {
                             <div className="form-group">
                                 <label class="form-label mb-2">descripcion del Egreso</label>
                                 <input
+                                    required
                                     type="text"
                                     class="form-control w-50 mb-4"
                                     placeholder="Ingrese la Descripcion"
@@ -110,6 +106,7 @@ function Egresos() {
                             <div className="form-group">
                                 <label class="form-label mb-2">cantidad del Egreso</label>
                                 <input
+                                    required
                                     type="number"
                                     class="form-control w-50 mb-4"
                                     placeholder="Ingrese la Cantidad"
@@ -121,6 +118,7 @@ function Egresos() {
                             <div className="form-group">
                                 <label class="form-label mb-2">fecha del egreso</label>
                                 <input
+                                    required
                                     type="date"
                                     class="form-control w-50 mb-4"
                                     placeholder="Ingrese la fecha"

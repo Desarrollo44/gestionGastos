@@ -11,10 +11,7 @@ function Ingresos() {
         setOpen(false)
     }
     return (<>
-        <div class="card border-success mb-3" style={{
-            maxWidth: "40rem",
-            
-    }}>
+        <div class="card border-success mb-3 " style={{width:'700px'}}>
             <div class="card-header text-success">Ingresos</div>
             <div class="card-body">
                 <h3 class="card-title">Registro de Ingresos</h3>
