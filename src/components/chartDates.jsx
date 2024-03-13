@@ -37,8 +37,8 @@ function LineChart({ dataEgresos, dataIngreso }) {
     };
 
     return (<>
-        {dataEgresos.length < 2 && dataIngreso.length < 2 ? (
-            <div style={{ margin: '40px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        {dataEgresos.length < 2 || dataIngreso.length < 2 ? (
+            <div style={{ margin: '40px', display: 'flex', flexDirection: 'column', alignItems: 'center',width:'400px'}}>
                 <h1 style={{ fontSize: '40px', border: 'solid 2px', borderRadius: '20px', padding: '15px' }}>No se han generado suficientes movimientos</h1>
             </div>
         ) : (

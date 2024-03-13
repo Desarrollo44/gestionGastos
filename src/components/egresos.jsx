@@ -103,7 +103,7 @@ function Egresos({getTotalE,getDataE}) {
                     position: 'fixed'
                 }}
             >
-                <div class="card mb-3 w-50" >
+                <div class="card text-danger mb-3 w-50" >
                     <div class="card-header w-100"> <h4 class="card-title">Agreagar Egreso</h4></div>
                     <div class="card-body">
 

@@ -36,9 +36,9 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+        <nav style={{position:'fixed', width:'100%',height:'10%',zIndex:1000,top:0}} class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
           <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-            <span style={{ color: 'white', fontSize: '70px' }} class="material-symbols-outlined">
+            <span style={{ color: 'white', fontSize: '70px',marginLeft:'2rem' }} class="material-symbols-outlined">
               savings
             </span>
             <h1 class="navbar-brand" style={{ fontSize: '35px' }}>Gestor de Gastos Personales</h1>
@@ -46,8 +46,8 @@ function App() {
         </nav>
       </header>
       <body>
-        <Total totalE={totalE} totalIn={totalIn} /><br/><br/><br/>
-
+        <Total totalE={totalE} totalIn={totalIn} /><br/><br/>
+        <h3 style={{marginLeft:'10rem'}} className="text-primary">Estaditicas:</h3>
         <div style={{display:'flex',marginLeft:'17em',gap:'250px', alignItems:'center'}}>
           <ChartComponent totalE={totalE} totalIn={totalIn} />
           <LineChart dataEgresos={dataE} dataIngreso={dataIn} />
