@@ -46,9 +46,9 @@ function App() {
         </nav>
       </header>
       <body>
-        <Total totalE={totalE} totalIn={totalIn} />
+        <Total totalE={totalE} totalIn={totalIn} /><br/><br/><br/>
 
-        <div style={{display:'flex', justifyContent:'center',gap:'250px', alignItems:'center'}}>
+        <div style={{display:'flex',marginLeft:'17em',gap:'250px', alignItems:'center'}}>
           <ChartComponent totalE={totalE} totalIn={totalIn} />
           <LineChart dataEgresos={dataE} dataIngreso={dataIn} />
         </div>

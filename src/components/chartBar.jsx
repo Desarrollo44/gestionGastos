@@ -34,7 +34,7 @@ function ChartComponent({totalE,totalIn}) {
         legend: { position: "none" },
     };
 
-    return (<div>
+    return (<div style={{marginBottom:'8rem'}}>
         <Chart
             width={'500px'}
             height={'300px'}
