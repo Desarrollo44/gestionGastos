@@ -36,7 +36,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <nav style={{position:'fixed', width:'100%',height:'10%',zIndex:1000,top:0}} class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+        <nav style={{position:'fixed', width:'100%',height:'12%',zIndex:1000,top:0}} class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
           <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
             <span style={{ color: 'white', fontSize: '70px',marginLeft:'2rem' }} class="material-symbols-outlined">
               savings
