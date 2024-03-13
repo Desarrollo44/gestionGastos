@@ -17,9 +17,9 @@ function LineChart({ dataEgresos, dataIngreso }) {
     const ingresosData = ingresos.map(obj => [new Date(obj.fecha), parseFloat(obj.cantidad)]);
 
     const chartData = [
-        ['Fecha', 'Egresos', 'Ingresos'],
-        ...egresosData.map(([fecha, cantidad]) => [fecha, cantidad, null]),
-        ...ingresosData.map(([fecha, cantidad]) => [fecha, null, cantidad])
+        ['Fecha', 'Ingresos', 'Egresos'],
+        ...ingresosData.map(([fecha, cantidad]) => [fecha, cantidad, null]),
+        ...egresosData.map(([fecha, cantidad]) => [fecha, null, cantidad])
     ];
 
     const options = {

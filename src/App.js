@@ -48,7 +48,7 @@ function App() {
       <body>
         <Total totalE={totalE} totalIn={totalIn} />
 
-        <div style={{display:'flex', justifyContent:'center',gap:'250px'}}>
+        <div style={{display:'flex', justifyContent:'center',gap:'250px', alignItems:'center'}}>
           <ChartComponent totalE={totalE} totalIn={totalIn} />
           <LineChart dataEgresos={dataE} dataIngreso={dataIn} />
         </div>
