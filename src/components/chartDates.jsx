@@ -6,12 +6,17 @@ function LineChart({ dataEgresos, dataIngreso }) {
     const [ingresos, setIngresos] = useState(dataIngreso);
 
     useEffect(() => {
-        setEgresos(dataEgresos);
+        setEgresos(dataEgresos.sort((a,b)=>new Date( a.fecha )- new Date(b.fecha)));
     }, [dataEgresos]);
 
     useEffect(() => {
-        setIngresos(dataIngreso);
+        setIngresos(dataIngreso.sort((a,b)=>new Date( a.fecha )- new Date(b.fecha)));
+        
     }, [dataIngreso]);
+
+    // useEffect(()=>{
+    //     console.log(ingresos)
+    // },[ingresos]);
 
     const egresosData = egresos.map(obj => [new Date(obj.fecha), parseFloat(obj.cantidad)]);
     const ingresosData = ingresos.map(obj => [new Date(obj.fecha), parseFloat(obj.cantidad)]);
