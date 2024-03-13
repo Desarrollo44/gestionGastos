@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Results from "./results";
 
-function Egresos({getTotalE}) {
+function Egresos({getTotalE,getDataE}) {
     const [dataEgresos, setDataEgresos] = useState([]);
     const [egresoTotal, setEgresoTotal] = useState(0);
     const [error, setError] = useState('');
@@ -67,7 +67,8 @@ function Egresos({getTotalE}) {
 
     useEffect(()=>{
         getTotalE(egresoTotal);
-    },[egresoTotal]);
+        getDataE(dataEgresos);
+    },[egresoTotal,dataEgresos]);
     return (<>
         <div class="card border-danger mb-3 " style={{ width: '700px' }} >
             <div class="card-header text-danger">Egresos</div>

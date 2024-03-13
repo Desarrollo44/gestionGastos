@@ -1,6 +1,6 @@
 import { useState,useEffect } from "react";
 import Results from "./results";
-function Ingresos({getTotal}) {
+function Ingresos({getTotal,getDataIn}) {
     const [open, setOpen] = useState(false);
     const [ingresoTotal, setIngresoTotal] = useState(0);
     const [dataIngresos, setDataIngresos] = useState([]);
@@ -69,7 +69,8 @@ function Ingresos({getTotal}) {
 
     useEffect(()=>{
         getTotal(ingresoTotal);
-    },[ingresoTotal]);
+        getDataIn(dataIngresos);
+    },[ingresoTotal,dataIngresos]);
 
     return (<>
         <div class="card border-success mb-3 " style={{ width: '700px' }}>

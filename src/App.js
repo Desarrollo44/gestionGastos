@@ -3,14 +3,15 @@ import Ingresos from "./components/ingresos";
 import Total from "./components/totalDinero";
 import './App.css'
 import { useState, useEffect } from "react";
+import ChartComponent from "./components/chartBar";
+import LineChart from "./components/chartDates";
 
 function App() {
   const [totalIn, setTotalIn] = useState(0);
   const [totalE, setTotalE] = useState(0);
-  // Este efecto se ejecutará cada vez que totalIn cambie
-  // useEffect(() => {
-  //   console.log("Nuevo total de ingresos:", totalIn);
-  // }, [totalIn]);
+  const [dataE, setDataE] = useState([]);
+  const [dataIn, setDataIn] = useState([]);
+
 
   const getTotalIn = async (newTotal) => {
     // Usamos la función de callback para asegurarnos de obtener el valor más reciente
@@ -23,12 +24,21 @@ function App() {
   const getTotaE = async (newTotalE) => {
     setTotalE(newTotalE);
   }
+
+  const getDataE = async (newDataE) => {
+    setDataE(newDataE);
+  }
+
+  const getDataIn = async (newDataIn) => {
+    setDataIn(newDataIn);
+  }
+
   return (
     <div className="App">
       <header className="App-header">
         <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
-          <div style={{display:'flex', alignItems:'center',gap:'20px'}}>
-            <span style={{color:'white', fontSize:'70px'}} class="material-symbols-outlined">
+          <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+            <span style={{ color: 'white', fontSize: '70px' }} class="material-symbols-outlined">
               savings
             </span>
             <h1 class="navbar-brand" style={{ fontSize: '35px' }}>Gestor de Gastos Personales</h1>
@@ -38,6 +48,10 @@ function App() {
       <body>
         <Total totalE={totalE} totalIn={totalIn} />
 
+        <div style={{display:'flex', justifyContent:'space-evenly',padding:'50px'}}>
+          <ChartComponent totalE={totalE} totalIn={totalIn} />
+          <LineChart dataEgresos={dataE} dataIngreso={dataIn} />
+        </div>
         <div style={{
           display: 'flex',
           gap: '40px',
@@ -45,8 +59,8 @@ function App() {
           justifyContent: 'center',
           marginTop: '10%'
         }}>
-          <Egresos getTotalE={getTotaE} />
-          <Ingresos getTotal={getTotalIn} />
+          <Egresos getTotalE={getTotaE} getDataE={getDataE} />
+          <Ingresos getTotal={getTotalIn} getDataIn={getDataIn} />
         </div>
       </body>
     </div>
